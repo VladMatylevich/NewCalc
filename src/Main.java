@@ -17,7 +17,7 @@ public class Main {
         } else if (exp.contains(" / ")) {
             data = exp.split(" / ");
             action = '/';
-        }else{
+        } else {
             throw new Exception("Некорректный знак действия");
         }
         if (action == '*' || action == '/') {
@@ -33,27 +33,31 @@ public class Main {
             int multiplier = Integer.parseInt(data[1]);
             String result = "";
             for (int i = 0; i < multiplier; i++) {
-                result+=data[0];
+                result += data[0];
             }
             printInQuotes(result);
         } else if (action == '-') {
             int index = data[0].indexOf(data[1]);
-            if(index == -1){
+            if (index == -1) {
                 printInQuotes(data[0]);
-            }else{
+            } else {
                 String result = data[0].substring(0, index);
-                result+=data[0].substring(index+data[1].length());
+                result += data[0].substring(index + data[1].length());
                 printInQuotes(result);
             }
-        }else{
-            int newLen = data[0].length()/Integer.parseInt(data[1]);
-            String result = data[0].substring(0,newLen);
+        } else {
+            int newLen = data[0].length() / Integer.parseInt(data[1]);
+            String result = data[0].substring(0, newLen);
             printInQuotes(result);
         }
 
 
     }
-    static void printInQuotes(String text){
-        System.out.println("\""+text+"\"");
+
+    static void printInQuotes(String result) {
+        if (result.length() > 40) {
+            result = result.substring(0, 40) + "...";
+            System.out.println("\"" + result + "\"");
+        }
     }
 }
